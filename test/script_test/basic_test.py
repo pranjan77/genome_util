@@ -21,7 +21,7 @@ class TestCoreGenomeUtilMethods(unittest.TestCase):
        "test/script_test/output.json", 
        "test/script_test/token.txt"])
 
-    # print stdout of implementation
+    # print error code of implementation
     print(out);
 
     # read and print output of the function
