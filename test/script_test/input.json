@@ -1,0 +1,14 @@
+{
+	"version":"1.1",
+	"method":"KBaseCoreGenomeUtil.blast_against_genome",
+	"context":null,
+	"params":[
+		{
+			
+		}
+	]
+
+
+
+
+}

@@ -79,21 +79,35 @@ deploy-service: deploy-libs deploy-executable-script deploy-service-scripts depl
 
 deploy-libs:
 	@echo "Deploying libs to target: $(TARGET)"
-	#rsync -vrh lib/* $(TARGET)/lib/. \
-	#	--exclude TestMathClient.pl --exclude TestPerlServer.sh \
-	#	--exclude *.bak* --exclude AuthConstants.pm
+	mkdir -p $(TARGET)/lib/biokbase
+	rsync -vrh lib/biokbase/$(MODULE) $(TARGET)/lib/biokbase/.
 
 deploy-executable-script:
 	@echo "Installing executable scripts to target: $(TARGET)/bin"
 	echo '#!/bin/bash' > $(TARGET)/bin/$(EXECUTABLE_SCRIPT_NAME)
-	#echo 'export KB_RUNTIME=$(DEPLOY_RUNTIME)' >> $(TARGET)/bin/$(EXECUTABLE_SCRIPT_NAME)
-	#echo 'export PATH=$(TARGET)/bin:$(DEPLOY_RUNTIME)/bin:$$PATH' >> $(TARGET)/bin/$(EXECUTABLE_SCRIPT_NAME)
-	#echo 'export PERL5LIB=$(TARGET)/lib' >> $(TARGET)/bin/$(EXECUTABLE_SCRIPT_NAME)
-	echo 'python $(TARGET)/lib/Bio/KBase/$(MODULE)/$(MODULE_CAPS)Server.pm $$1 $$2 $$3' \
+	echo 'export KB_RUNTIME=$(DEPLOY_RUNTIME)' >> $(TARGET)/bin/$(EXECUTABLE_SCRIPT_NAME)
+	echo 'export PYTHONPATH="$(TARGET)/lib"' >> $(TARGET)/bin/$(EXECUTABLE_SCRIPT_NAME)
+	echo 'python $(TARGET)/lib/biokbase/$(MODULE)/$(MODULE_CAPS).py $$1 $$2 $$3' \
 		>> $(TARGET)/bin/$(EXECUTABLE_SCRIPT_NAME)
 	chmod +x $(TARGET)/bin/$(EXECUTABLE_SCRIPT_NAME)
 
 deploy-service-scripts:
+
+
+test: test-impl create-test-wrapper
+
+
+test-impl: create-test-wrapper
+	./test/script_test/run_tests.sh
+
+create-test-wrapper:
+	@echo "Creating test script wrapper in test/script_test"
+	echo '#!/bin/bash' > test/script_test/run_tests.sh
+	echo 'export PYTHONPATH="$(DIR)/$(LIB_DIR)"' >> test/script_test/run_tests.sh
+	echo 'export PYTHONPATH="$(DIR)/$(LIB_DIR)"' >> test/script_test/run_tests.sh
+	echo 'python $(DIR)/test/script_test/basic_test.py $$1 $$2 $$3' \
+		>> test/script_test/run_tests.sh
+	chmod +x test/script_test/run_tests.sh
 
 
 endif
