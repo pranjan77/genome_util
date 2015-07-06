@@ -33,10 +33,13 @@ class KBaseCoreGenomeUtil:
         # return variables are: returnVal
         #BEGIN blast_against_genome
 
+
+
         returnVal = "some/result/objectRef"
 
         print("in here")
         pprint(ctx)
+        pprint(params)
 
 
         #END blast_against_genome
