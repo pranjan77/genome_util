@@ -1,5 +1,3 @@
-  
-
 
 module KBaseCoreGenomeUtil {
 
@@ -21,6 +19,7 @@ module KBaseCoreGenomeUtil {
 	float e-value; /*BLAST output parameters*/
 	decimal coverage; /*BLAST output parameters*/
 	float score; /*BLAST output parameters*/
+	decimal identity;  /*BLAST output parameters*/
     } hit;
 	
 
@@ -34,13 +33,13 @@ module KBaseCoreGenomeUtil {
 	float e-value; /*BLAST input parameters*/
 	decimal coverage; /*BLAST input parameters*/
 	float score; /*BLAST input parameters*/
+	decimal identity; /*BLAST input parameters*/
 
 	string blast_type; /the types of BLAST, such as blastp or blastn/
 
     } BlastGenomeParams;
 
     /* description of method and parameters */
-    funcdef blast_against_genomes(BlastGenomeParams params) 
-      			returns (blast_output_ref) authentication required;
+    funcdef blast_against_genomes(BlastGenomeParams params) returns (blast_output_ref) authentication required;
 
 };
