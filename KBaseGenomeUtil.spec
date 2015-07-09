@@ -2,7 +2,7 @@ module KBaseGenomeUtil {
 
 
 
-	/* @id ws KBaseCoreGenomeUtil.BlastOutput */
+	/* @id ws KBaseGenomeUtil.BlastOutput */
 	typedef string blast_output_ref;
 
     typedef string genome_id;
