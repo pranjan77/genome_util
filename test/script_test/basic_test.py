@@ -6,7 +6,7 @@ from pprint import pprint
 
 from subprocess import call
 
-class TestCoreGenomeUtilMethods(unittest.TestCase):
+class TestGenomeUtilMethods(unittest.TestCase):
 
   def test_method(self):
     print("\n\n----------- basic test ----------")
@@ -16,7 +16,7 @@ class TestCoreGenomeUtilMethods(unittest.TestCase):
 
 
     # call the script with some input
-    out = call(["run_KBaseCoreGenomeUtil.sh", 
+    out = call(["run_KBaseGenomeUtil.sh", 
        "test/script_test/input.json", 
        "test/script_test/output.json", 
        "test/script_test/token.txt"])
