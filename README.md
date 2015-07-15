@@ -1,6 +1,6 @@
 
 
-Core Genome Utilities
+Genome Utilities
 ===========================
 
 A KBase module that exposes core KBase genome and feature utility methods, such as 
