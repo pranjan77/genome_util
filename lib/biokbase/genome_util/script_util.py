@@ -88,4 +88,3 @@ def extract_blast_output(myfile):
 
 
 
-extract_blast_output('tmp_out')
