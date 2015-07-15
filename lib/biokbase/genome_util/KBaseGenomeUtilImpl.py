@@ -97,7 +97,8 @@ class KBaseGenomeUtil:
 
 	print "test"
 	res=script_util.extract_blast_output('tmp_out')
-
+	os.remove(tmp_out)
+	os.remove(input_seq)
 	
 		
 	
