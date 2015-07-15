@@ -1,1 +1,2 @@
 [ add token here - DO NOT CHECK IN! ]
+un=plane83|tokenid=dbd293d6-25ad-11e5-89d4-22000aeb2621|expiry=1467922435|client_id=plane83|token_type=Bearer|SigningSubject=https://nexus.api.globusonline.org/goauth/keys/37b0453c-21ac-11e5-a89d-22000aeb2621|sig=59a0a84b2380cf468de6e8eac6b2b55bb972793c66876f7eb63717d4d211b9ce7729878b61247c642c8c632ec936304c983d47920e162132a3244829b53cd1e36e2f19554af3c839bfcd600c642cbfd84daa8b22f9db43119e9501fff26cc31411df57f9ba451998103a610c78765bc2e85daa76cbdd8237a2ff3a7809518e8a

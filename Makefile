@@ -1,8 +1,8 @@
 
-MODULE = core_genome_util
-MODULE_CAPS = KBaseCoreGenomeUtil
+MODULE = genome_util
+MODULE_CAPS = KBaseGenomeUtil
 
-SPEC_FILE = KBaseCoreGenomeUtil.spec
+SPEC_FILE = KBaseGenomeUtil.spec
 
 #End of user defined variables
 
