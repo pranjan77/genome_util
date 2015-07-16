@@ -95,10 +95,8 @@ class KBaseGenomeUtil:
 	os.system("blastall -p blastp -i tmp_seq -m 9 -o tmp_out -d blast_db/tmp_genome_fasta")
 	os.remove('tmp_seq')
 
-	print "test"
 	res=script_util.extract_blast_output('tmp_out')
-	os.remove(tmp_out)
-	os.remove(input_seq)
+	#os.remove('tmp_out')
 	
 		
 	
