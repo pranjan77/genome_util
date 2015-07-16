@@ -112,3 +112,16 @@ class KBaseGenomeUtil:
                              'returnVal is not type basestring as required.')
         # return the results
         return [returnVal]
+
+    def compare_genome_groups(self, ctx, input):
+        # ctx is the context object
+        # return variables are: returnVal
+        #BEGIN compare_genome_groups
+        #END compare_genome_groups
+
+        # At some point might do deeper type checking...
+        if not isinstance(returnVal, basestring):
+            raise ValueError('Method compare_genome_groups return value ' +
+                             'returnVal is not type basestring as required.')
+        # return the results
+        return [returnVal]
