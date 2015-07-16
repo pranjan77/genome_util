@@ -16,7 +16,7 @@ Examples of tools that will be developed in this module:
 
 
 
-Note for development:
+Note for development:\n
 1) Delete the PATHONPATH in the 'bin/run_KBaseGenomeUtil.sh'
 
 2) . /kb/dev_container/user-env.sh
