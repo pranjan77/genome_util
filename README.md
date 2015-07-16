@@ -3,14 +3,17 @@
 Genome Utilities
 ===========================
 
-A KBase module that exposes core KBase genome and feature utility methods, such as 
-running Blast against a genome.
+This module provides basic bioinformatic tools for KBase users.
+
+
+Examples of tools that will be developed in this module:
+1) Blast a protein sequence against a genome
+2) Generate GeneOntology annotation for a protein sequence, through InterproSCAN.
+3) All-aganist-all sequence comparison between two genomes
+4) Functional comparison between two genomes
 
 
 
 
-The name of this module should be changed.
-'Core Genome' may refers to something oppsite to 'Pan Genome'.
-Maybe change the name of this module to 'Genome Core Utilities' or 'Genome basic utilities' will be better for people to understand.
 
 
