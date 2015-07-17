@@ -19,7 +19,7 @@ class TestGenomeUtilMethods(unittest.TestCase):
     out = call(["run_KBaseGenomeUtil.sh", 
        "test/script_test/input.json", 
        "test/script_test/output.json", 
-       "test/script_test/token.txt"])
+       "/mnt/project/mytoken.txt"])
 
     # print error code of implementation
     print(out);

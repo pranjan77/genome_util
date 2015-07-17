@@ -1,7 +1,5 @@
 module KBaseGenomeUtil {
 
-    /* @id ws KBaseGenomeUtil.BlastOutput */
-    typedef string blast_output_ref;
 
     /*genome_id is a KBase genome object id*/
     typedef string genome_id;
@@ -35,7 +33,7 @@ module KBaseGenomeUtil {
 
     /* description of method and parameters */
     funcdef blast_against_genome(BlastGenomeParams params) 
-      			returns (blast_output_ref) authentication required;
+      			returns (hits) authentication required;
 
 
 
