@@ -48,7 +48,7 @@ class KBaseGenomeUtil:
 		sequence=params['query']
 	else:
 		#error message: your sequence are too short
-		print "error"
+		raise Exception("The input sequence is too short!")
 	#else:
 		#sequence=script_util.get_seq(params['gene_id'])
 		#sequence=(params['gene_id'])
@@ -76,6 +76,8 @@ class KBaseGenomeUtil:
 	#with open('tmp_data','w') as outfile:
 	#	json.dump(genome, outfile)	
 	
+
+	check_seq=0
 	if(params['blast_program'] == 'blastp'):
 		formatdb_type='T'
 		#extract protein sequences from the genome object
@@ -85,6 +87,7 @@ class KBaseGenomeUtil:
 		for gene in res['data']['features']:
 			if 'protein_translation' in gene.keys():
 				target.write(">" + gene['id'] + "\n" + gene['protein_translation'] + "\n")
+				check_seq=1
 		target.close()
 	
 	
@@ -97,9 +100,11 @@ class KBaseGenomeUtil:
 		for gene in res['data']['features']:
 			if 'dna_sequence' in gene.keys():
 				target.write(">" + gene['id'] + "\n" + gene['dna_sequence'] + "\n")
+				check_seq=1
 		target.close()
 
-
+	if check_seq == 0:
+		raise Exception("The genome object does not contain any sequences!")
 	
 	
 	
