@@ -37,6 +37,8 @@ compile-kb-module:
 build-executable-script-python: setup-local-dev-kb-py-libs
 	mkdir -p $(LBIN_DIR)
 	echo '#!/bin/bash' > $(LBIN_DIR)/$(EXECUTABLE_SCRIPT_NAME)
+	echo 'export KB_DEPLOYMENT_CONFIG="$(DIR)/deploy.cfg"' >> $(LBIN_DIR)/$(EXECUTABLE_SCRIPT_NAME)
+	echo 'export KB_SERVICE_NAME="$(MODULE_CAPS)"' >> $(LBIN_DIR)/$(EXECUTABLE_SCRIPT_NAME)
 	echo 'export PYTHONPATH="$(DIR)/$(LIB_DIR)"' >> $(LBIN_DIR)/$(EXECUTABLE_SCRIPT_NAME)
 	echo 'python $(DIR)/lib/biokbase/$(MODULE)/$(MODULE_CAPS).py $$1 $$2 $$3' \
 		>> $(LBIN_DIR)/$(EXECUTABLE_SCRIPT_NAME)
@@ -72,20 +74,24 @@ DEPLOY_RUNTIME ?= /kb/runtime
 TARGET ?= /kb/deployment
 #SERVICE_DIR ?= $(TARGET)/services/$(MODULE)
 
-deploy: deploy-scripts
+deploy: deploy-scripts deploy-cfg
 
-deploy-scripts: deploy-libs deploy-executable-script
+deploy-client: deploy-scripts deploy-cfg
+
+deploy-scripts: deploy-libs deploy-executable-script deploy-cfg
 
 deploy-service: deploy-libs deploy-executable-script deploy-service-scripts deploy-cfg
 
 deploy-libs:
 	@echo "Deploying libs to target: $(TARGET)"
 	mkdir -p $(TARGET)/lib/biokbase
-	rsync -vrh lib/biokbase/$(MODULE) $(TARGET)/lib/biokbase/.
+	rsync -vrh --exclude *.bak* lib/biokbase/$(MODULE) $(TARGET)/lib/biokbase/.
 
 deploy-executable-script:
 	@echo "Installing executable scripts to target: $(TARGET)/bin"
 	echo '#!/bin/bash' > $(TARGET)/bin/$(EXECUTABLE_SCRIPT_NAME)
+	echo 'export KB_DEPLOYMENT_CONFIG="$(TARGET)/deployment.cfg"' >> $(TARGET)/bin/$(EXECUTABLE_SCRIPT_NAME)
+	echo 'export KB_SERVICE_NAME="$(MODULE_CAPS)"' >> $(TARGET)/bin/$(EXECUTABLE_SCRIPT_NAME)
 	echo 'export KB_RUNTIME=$(DEPLOY_RUNTIME)' >> $(TARGET)/bin/$(EXECUTABLE_SCRIPT_NAME)
 	echo 'export PYTHONPATH="$(TARGET)/lib"' >> $(TARGET)/bin/$(EXECUTABLE_SCRIPT_NAME)
 	echo 'python $(TARGET)/lib/biokbase/$(MODULE)/$(MODULE_CAPS).py $$1 $$2 $$3' \
@@ -104,7 +110,7 @@ test-impl: create-test-wrapper
 create-test-wrapper:
 	@echo "Creating test script wrapper in test/script_test"
 	echo '#!/bin/bash' > test/script_test/run_tests.sh
-	echo 'export PYTHONPATH="$(DIR)/$(LIB_DIR)"' >> test/script_test/run_tests.sh
+	echo 'export KB_RUNTIME=$(DEPLOY_RUNTIME)' >> $(TARGET)/bin/$(EXECUTABLE_SCRIPT_NAME)
 	echo 'export PYTHONPATH="$(DIR)/$(LIB_DIR)"' >> test/script_test/run_tests.sh
 	echo 'python $(DIR)/test/script_test/basic_test.py $$1 $$2 $$3' \
 		>> test/script_test/run_tests.sh
