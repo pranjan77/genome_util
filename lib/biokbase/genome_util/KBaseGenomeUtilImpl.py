@@ -4,6 +4,7 @@ import sys
 import os
 import glob
 import json
+from pprint import pprint
 #sys.path.insert(0, '/kb/dev_container/modules/genome_util/lib/biokbase/genome_util')
 import script_util
 #from biokbase.workspace.client import Workspace
@@ -29,12 +30,26 @@ class KBaseGenomeUtil:
     # the latter method is running.
     #########################################
     #BEGIN_CLASS_HEADER
+    # Config variables that SHOULD get overwritten in the constructor
+    __TEMP_DIR = 'temp_dir'
+    __WS_URL = 'https://kbase.us/services/ws'
     #END_CLASS_HEADER
 
     # config contains contents of config file in a hash or None if it couldn't
     # be found
     def __init__(self, config):
         #BEGIN_CONSTRUCTOR
+
+        # This is where config variable for deploy.cfg are available
+        print "SCRIPT CONFIG:"
+        pprint(config)
+        if 'ws_url' in config:
+        	__WS_URL = config['ws_url']
+        	print "Setting __WS_URL = "+__WS_URL
+        if 'temp_dir' in config:
+        	__TEMP_DIR = config['temp_dir']
+        	print "Setting __TEMP_DIR = "+__TEMP_DIR
+
         #END_CONSTRUCTOR
         pass
 
