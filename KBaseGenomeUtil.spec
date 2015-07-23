@@ -10,8 +10,9 @@ module KBaseGenomeUtil {
 	/*only one parameter from query and gene_id is required*/
 	string query;			/*user can paste gene sequence directly*/
 	string gene_id; 		/*gene_id is a KBase feature id*/
-
-
+	string ws_id;			/*workspace where the genome object is stored*/
+	string output_name;		/*output object name*/
+	
     	list<genome_id> genome_ids; 	/*database to search against*/
     	string blast_program;		/*BLAST input parameters, blastp, blastn or etc.*/
     	float e-value;			/*BLAST input parameters*/
@@ -27,18 +28,32 @@ module KBaseGenomeUtil {
 	float score;			/*BLAST input parameters*/
     
     } hit;
-    typedef list<hit> hits;
 
+    
+    typedef structure {
+    	list<hit> hits; 		/*a list of BLAST hits*/
+    } BLAST_output;
 
 
     /* description of method and parameters */
     funcdef blast_against_genome(BlastGenomeParams params) 
-      			returns (hits) authentication required;
-
-
+      			returns (BLAST_output) authentication required;
 
     /* reference of compare_genome_groups output object */
     typedef string compare_genome_groups_output_ref;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
