@@ -23,12 +23,7 @@ def get_seq(gene_id):
 def get_genome(genome_id=None,workspace_id=None,token=None,workspace_url=None):
 	#download genome object from workspace
 	if workspace_url is None:
-		workspace_url='https://kbase.us/services/ws/'
-	if token is None:
-		with open('/kb/dev_container/modules/genome_util/mytoken.txt') as token_file:
-			token=token_file.read()
-		token=token.rstrip()
-
+		workspace_url='https://ci.kbase.us/services/ws'
 
 	
 	#print token
@@ -36,8 +31,8 @@ def get_genome(genome_id=None,workspace_id=None,token=None,workspace_url=None):
 	#print workspace_id
 	
 	workspace_client=Workspace(url=workspace_url, token=token)
-	#genome=workspace_client.get_object({'id':genome_id, 'workspace':workspace_id, 'type':'KBaseGenomes.Genome'})
-	genome = workspace_client.get_object({'id' : 'Bifidobacterium_animalis_subsp._lactis_AD011', 'type' : 'KBaseGenomes.Genome',  'workspace' : 'plane83:1436884411390'})
+	genome=workspace_client.get_object({'id':genome_id, 'workspace':workspace_id, 'type':'KBaseGenomes.Genome'})
+	#genome = workspace_client.get_object({'id' : 'Bifidobacterium_animalis_subsp._lactis_AD011', 'type' : 'KBaseGenomes.Genome',  'workspace' : 'plane83:1436884411390'})
 	
 
 	return genome
@@ -74,9 +69,9 @@ def extract_blast_output(myfile):
 		if re.match(r'^#', line): continue
 		line=line.rstrip()
 		aa=re.split(r'\t',line)
-		tmp={'gene_id':aa[1],'e-value':aa[10],'score':aa[11],'identity':aa[2]}
+		tmp={'gene_id':aa[1],'e-value':float(aa[10]),'score':float(aa[11]),'identity':float(aa[2])}
 		info.append(tmp)
-	info=json.dumps(info)
+	#info=json.dumps(info)
 	#target=open('tmp_file','w')
 	#target.write(info)
 	#target.close()
