@@ -4,14 +4,15 @@
 	"context":null,
 	"params":[
 		{
-			"query":"AQLREKTGDKKIIFSPEFLREGHALYDNLHPSRIVVGAPTDDAEAVKAA",
-			"gene_id":"gene_iiiiiiiiiiid",
-			"genome_ids":["gggggggggg1"],
-			"e-value":"0.01",
+			"query":"cgctggcggccttggaagaagagttcgatgtgttcgtggtgaccgatgc",
+			"genome_ids":["kb|g.208505"],
+			"e-value": "1",
 			"coverage":"0.00000000005",
 			"identity":"0.00000003",
-			"score":"50000000000000",
-			"blast_program":"blastp"
+			"score":"50",
+			"blast_program":"blastn",
+			"ws_id":"kbasetest:1437674347386",
+			"output_name":"test_BLASToutput_DNA"
 		
 		}
 	]
