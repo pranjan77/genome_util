@@ -17,9 +17,13 @@ Examples of tools that will be developed in this module:
 4) Functional comparison between two genomes
 
 
+Testing
+===========================
+1) provide user name and password in test/test.cfg
 
+2) login as kbasetest
 
-
+3) make test
 
 
 
