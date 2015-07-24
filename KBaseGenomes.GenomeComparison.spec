@@ -49,6 +49,7 @@ typedef structure {
   float fraction_genomes;
   float fraction_consistent_annotations;
   string most_consistent_role;
+  mapping <string stat_type, tuple<float pvalue, float fdr>>GroupStatistics;  
 } GenomeComparisonFamily;
 
 /*
@@ -60,6 +61,8 @@ typedef string Reaction_id;
 /*
 GenomeComparisonFunction object: this object holds information about a genome in a function across all genomes
 */
+
+
 typedef structure {
   int core;
   mapping<string, list<tuple<Feature_id, int, float>>> genome_features;
@@ -72,6 +75,7 @@ typedef structure {
   float fraction_genomes;
   float fraction_consistent_families;
   string most_consistent_family;
+  mapping <string stat_type, tuple<float pvalue, float fdr>>GroupStatistics;  
 } GenomeComparisonFunction;
 
 /*
@@ -93,4 +97,5 @@ typedef structure {
   list<GenomeComparisonGenome> genomes;
   list<GenomeComparisonFamily> families;
   list<GenomeComparisonFunction> functions;
+  mapping<string genome_id, string group_name>;
 } GenomeComparison;
